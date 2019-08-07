@@ -17,10 +17,18 @@ namespace GradientGenerator
 
         ColorDialog colorDialog = new ColorDialog();
         List<Color> Colors = new List<Color> {  };
-
+        Dictionary<string, Color[]> Templates = new Dictionary<string, Color[]>();
         public MainForm()
         {
+            
             InitializeComponent();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            Templates.Add("Rainbow", GradientTemplates.Rainbow);
+            GradientTemplateComboBox.Items.AddRange(Templates.Keys.ToArray());
+            SyncColor();
         }
 
         #region CopyPaste
@@ -232,8 +240,11 @@ namespace GradientGenerator
             if(Colors.Count > 0) FillRectangle(Colors[(int)ColorPickedID.Value], e);
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void GradientTemplateComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
+            ClearColorsButton_Click(sender, e);
+            Colors.AddRange(Templates[GradientTemplateComboBox.SelectedItem.ToString()]);
+            ColorPickedID.Maximum = Colors.Count - 1;
             SyncColor();
         }
     }

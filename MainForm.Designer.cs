@@ -53,6 +53,7 @@
             this.DeleteColorButton = new System.Windows.Forms.Button();
             this.LabelCountColor = new System.Windows.Forms.Label();
             this.CountColors = new System.Windows.Forms.Label();
+            this.GradientTemplateComboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.GradientExamplePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PickedColorPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ColorPickedID)).BeginInit();
@@ -290,12 +291,23 @@
             this.CountColors.TabIndex = 25;
             this.CountColors.Text = "0";
             // 
+            // GradientTemplateComboBox
+            // 
+            this.GradientTemplateComboBox.FormattingEnabled = true;
+            this.GradientTemplateComboBox.Location = new System.Drawing.Point(341, 426);
+            this.GradientTemplateComboBox.Name = "GradientTemplateComboBox";
+            this.GradientTemplateComboBox.Size = new System.Drawing.Size(82, 21);
+            this.GradientTemplateComboBox.TabIndex = 26;
+            this.GradientTemplateComboBox.Text = "Template";
+            this.GradientTemplateComboBox.SelectedValueChanged += new System.EventHandler(this.GradientTemplateComboBox_SelectedValueChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(435, 470);
+            this.Controls.Add(this.GradientTemplateComboBox);
             this.Controls.Add(this.CountColors);
             this.Controls.Add(this.LabelCountColor);
             this.Controls.Add(this.DeleteColorButton);
@@ -359,6 +371,7 @@
         private System.Windows.Forms.Button DeleteColorButton;
         private System.Windows.Forms.Label LabelCountColor;
         private System.Windows.Forms.Label CountColors;
+        private System.Windows.Forms.ComboBox GradientTemplateComboBox;
     }
 }
 
