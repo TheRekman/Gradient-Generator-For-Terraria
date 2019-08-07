@@ -121,30 +121,20 @@ namespace GradientGenerator
         #region Drawing
         private void DrawGradient(Color[] colors, PaintEventArgs e)
         {
+            int count = colors.Count();
+            ColorBlend cb = new ColorBlend(count);
+            LinearGradientBrush brush = new LinearGradientBrush(e.ClipRectangle, Color.Black, Color.Black, 0 , false);
 
-            Rectangle rectangle = e.ClipRectangle;
-            int partCount = colors.Length - 1;
-            if (partCount == 0) partCount = 1;
-            int partLength = rectangle.Width / partCount;
+            float[] pos = new float[count];
+            for(int i = 0; i < count; i++)
+                pos[i] = (float)i/(count - 1);
 
-            LinearGradientBrush brush;
-            Rectangle partRectangle;
-            Color startColor, endColor;
+            cb.Positions = pos;
+            cb.Colors = colors;
+            brush.InterpolationColors = cb;
 
-            for (int i = 0; i < partCount; i++)
-            {
-                startColor = colors[i];
-                if (colors.Length < 2) endColor = startColor;
-                else endColor = colors[i + 1];
-                partRectangle = new Rectangle(rectangle.X + (partLength * i), rectangle.Y, partLength, rectangle.Height);
-                brush = new LinearGradientBrush(
-                    partRectangle,
-                    startColor,
-                    endColor,
-                    0.0
-                    );
-                e.Graphics.FillRectangle(brush, partRectangle);
-            }
+            e.Graphics.FillRectangle(brush, e.ClipRectangle);
+
         }
 
         private void FillRectangle(Color color, PaintEventArgs e)
