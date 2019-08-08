@@ -122,6 +122,11 @@ namespace GradientGenerator
         private void DrawGradient(Color[] colors, PaintEventArgs e)
         {
             int count = colors.Count();
+            if(count == 1)
+            {
+                FillRectangle(colors[0],e);
+                return;
+            }
             ColorBlend cb = new ColorBlend(count);
             LinearGradientBrush brush = new LinearGradientBrush(e.ClipRectangle, Color.Black, Color.Black, 0 , false);
 
