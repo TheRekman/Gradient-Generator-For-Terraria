@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -180,50 +176,59 @@ namespace GradientGenerator
             }
             OutputTextBox.Text = result;
         }
+
         private Color[] GenerateGradient(Color[] colors, int count)
         {
             Color[] result = new Color[count];
+            int clrCount = colors.Count();
+            if (clrCount > count) clrCount = count;
 
-            int stepRed, stepGreen, stepBlue;
+            float[] positions = new float[clrCount];
+            for (int i = 0; i < positions.Length; i++) positions[i] = (float)i / (clrCount - 1);
+
+            float pos, partPosition;
+            int Red, Green, Blue;
             int startRed, startGreen, startBlue;
             int endRed, endGreen, endBlue;
+            int deltaRed, deltaGreen, deltaBlue;
 
-            int partsCount;
-            if (count < colors.Length) partsCount = count;
-            else partsCount = colors.Length - 1;
+            float step = positions[1] - positions[0];
+            int colorID = 0;
 
-            int stepInPart = count / partsCount;
-            if (stepInPart == 0) stepInPart = 1;
-            
-
-            for(int i = 0; i < partsCount; i++)
+            for (int i = 0; i < count; i++)
             {
-                startRed = colors[i].R;
-                startGreen = colors[i].G;
-                startBlue = colors[i].B;
 
-                endRed = colors[i+1].R;
-                endGreen = colors[i+1].G;
-                endBlue = colors[i+1].B;
+                pos = (float)i / (count-1);
 
-                stepRed = (endRed - startRed) / stepInPart;
-                stepGreen = (endGreen - startGreen) / stepInPart;
-                stepBlue = (endBlue - startBlue) / stepInPart;
+                for (int j = 0; j < positions.Length - 1; j++)
+                    if (pos >= positions[j] && pos < positions[j + 1])
+                    {
+                        colorID = j;
+                        break;
+                    }
 
-                for (int j = 0; j < stepInPart; j++)
-                {
-                    int id = i * stepInPart + j;
-                    result[id] = Color.FromArgb(startRed, startGreen, startBlue);
+                startRed = colors[colorID].R;
+                startGreen = colors[colorID].G;
+                startBlue = colors[colorID].B;
 
-                    startRed += stepRed;
-                    startGreen += stepGreen;
-                    startBlue += stepBlue;
-                }
+                endRed = colors[colorID + 1].R;
+                endGreen = colors[colorID + 1].G;
+                endBlue = colors[colorID + 1].B;
+
+                deltaRed = endRed - startRed;
+                deltaGreen = endGreen - startGreen;
+                deltaBlue = endBlue - startBlue;
+
+                partPosition = (pos - step * colorID) / step;
+
+                Red = (int)(startRed + partPosition * deltaRed);
+                Green = (int)(startGreen + partPosition * deltaGreen);
+                Blue = (int)(startBlue + partPosition * deltaBlue);
+
+                result[i] = Color.FromArgb(Red, Green, Blue);
             }
-
             return result;
         }
-
 
         private void GradientExamplePictureBox_Paint(object sender, PaintEventArgs e)
         {
