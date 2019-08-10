@@ -145,6 +145,79 @@ namespace GradientGenerator
         }
         #endregion
 
+        #region HEX_RGB_Input
+        private void ColorRGB_Leave(object sender, EventArgs e) =>
+            RGBInput();
+
+
+        private void ColorRGB_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter) RGBInput();
+        }
+        private void RGBInput()
+        {
+            if (Colors.Count == 0)
+            {
+                SyncColor();
+                return;
+            }
+
+            string[] rgb = ColorRGB.Text.Replace(" ", "").Split(',');
+            byte red, green, blue;
+            if (Byte.TryParse(rgb[0], out red) &&
+            Byte.TryParse(rgb[1], out green) &&
+            Byte.TryParse(rgb[2], out blue))
+            {
+                int colorID = (int)ColorPickedID.Value;
+                Colors[colorID] = Color.FromArgb(red, green, blue);
+            }
+            SyncColor();
+        }
+
+        private void ColorHEX_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter) HEXInput();
+        }
+
+        private void ColorHEX_Leave(object sender, EventArgs e) =>
+            HEXInput();
+
+
+        private void HEXInput()
+        {
+            if (Colors.Count == 0)
+            {
+                SyncColor();
+                return;
+            }
+            string text = ColorHEX.Text;
+            text = text.Replace("#", "");
+            if (text.Length == 6)
+            {
+                string[] hex = new string[3];
+                for (int i = 0; i < 3; i++)
+                {
+                    hex[i] = text[i * 2].ToString() + text[i * 2 + 1].ToString();
+                }
+                int colorID = (int)ColorPickedID.Value;
+                int red, green, blue;
+                try
+                {
+                    red = Convert.ToInt32(hex[0], 16);
+                    green = Convert.ToInt32(hex[1], 16);
+                    blue = Convert.ToInt32(hex[2], 16);
+                }
+                catch
+                {
+                    SyncColor();
+                    return;
+                }
+                Colors[colorID] = Color.FromArgb(red, green, blue);
+            }
+            SyncColor();
+        }
+        #endregion
+
         private string ToHEX(Color color)
         {
             string result = null;

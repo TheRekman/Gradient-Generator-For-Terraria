@@ -206,17 +206,19 @@
             // 
             this.ColorRGB.Location = new System.Drawing.Point(108, 377);
             this.ColorRGB.Name = "ColorRGB";
-            this.ColorRGB.ReadOnly = true;
             this.ColorRGB.Size = new System.Drawing.Size(78, 20);
             this.ColorRGB.TabIndex = 15;
+            this.ColorRGB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ColorRGB_KeyPress);
+            this.ColorRGB.Leave += new System.EventHandler(this.ColorRGB_Leave);
             // 
             // ColorHEX
             // 
             this.ColorHEX.Location = new System.Drawing.Point(107, 403);
             this.ColorHEX.Name = "ColorHEX";
-            this.ColorHEX.ReadOnly = true;
             this.ColorHEX.Size = new System.Drawing.Size(78, 20);
             this.ColorHEX.TabIndex = 16;
+            this.ColorHEX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ColorHEX_KeyPress);
+            this.ColorHEX.Leave += new System.EventHandler(this.ColorHEX_Leave);
             // 
             // ClearColorsButton
             // 
