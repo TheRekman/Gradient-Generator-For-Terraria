@@ -165,9 +165,9 @@ namespace GradientGenerator
 
             for (int i = 0; i < text.Length; i++)
             {
-                if(text[i] == ' ')
+                if(String.IsNullOrWhiteSpace(text[i].ToString()))
                 {
-                    result += " ";
+                    result += text[i].ToString();
                     continue;
                 }
 
@@ -180,6 +180,12 @@ namespace GradientGenerator
         private Color[] GenerateGradient(Color[] colors, int count)
         {
             Color[] result = new Color[count];
+            if (colors.Count() == 1)
+            {
+                for (int i = 0; i < count; i++)
+                    result[i] = colors[0];
+                return result;
+            }
             int clrCount = colors.Count();
             if (clrCount > count) clrCount = count;
 
