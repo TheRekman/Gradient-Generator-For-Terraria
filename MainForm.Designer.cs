@@ -54,6 +54,7 @@
             this.LabelCountColor = new System.Windows.Forms.Label();
             this.CountColors = new System.Windows.Forms.Label();
             this.GradientTemplateComboBox = new System.Windows.Forms.ComboBox();
+            this.Reverse = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.GradientExamplePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PickedColorPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ColorPickedID)).BeginInit();
@@ -65,27 +66,27 @@
             this.InputTextBox.Multiline = true;
             this.InputTextBox.Name = "InputTextBox";
             this.InputTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.InputTextBox.Size = new System.Drawing.Size(200, 230);
+            this.InputTextBox.Size = new System.Drawing.Size(220, 230);
             this.InputTextBox.TabIndex = 0;
             this.InputTextBox.TextChanged += new System.EventHandler(this.InputTextBox_TextChanged);
             // 
             // OutputTextBox
             // 
             this.OutputTextBox.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.OutputTextBox.Location = new System.Drawing.Point(223, 12);
+            this.OutputTextBox.Location = new System.Drawing.Point(238, 12);
             this.OutputTextBox.Multiline = true;
             this.OutputTextBox.Name = "OutputTextBox";
             this.OutputTextBox.ReadOnly = true;
             this.OutputTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.OutputTextBox.Size = new System.Drawing.Size(200, 230);
+            this.OutputTextBox.Size = new System.Drawing.Size(220, 230);
             this.OutputTextBox.TabIndex = 1;
             this.OutputTextBox.TextChanged += new System.EventHandler(this.OutputTextBox_TextChanged);
             // 
             // GenerateButton
             // 
-            this.GenerateButton.Location = new System.Drawing.Point(12, 290);
+            this.GenerateButton.Location = new System.Drawing.Point(368, 290);
             this.GenerateButton.Name = "GenerateButton";
-            this.GenerateButton.Size = new System.Drawing.Size(139, 171);
+            this.GenerateButton.Size = new System.Drawing.Size(90, 55);
             this.GenerateButton.TabIndex = 2;
             this.GenerateButton.Text = "Generate";
             this.GenerateButton.UseVisualStyleBackColor = true;
@@ -113,7 +114,7 @@
             // 
             // CopyOutputButton
             // 
-            this.CopyOutputButton.Location = new System.Drawing.Point(218, 261);
+            this.CopyOutputButton.Location = new System.Drawing.Point(228, 261);
             this.CopyOutputButton.Name = "CopyOutputButton";
             this.CopyOutputButton.Size = new System.Drawing.Size(75, 23);
             this.CopyOutputButton.TabIndex = 6;
@@ -124,16 +125,16 @@
             // GradientExamplePictureBox
             // 
             this.GradientExamplePictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.GradientExamplePictureBox.Location = new System.Drawing.Point(157, 290);
+            this.GradientExamplePictureBox.Location = new System.Drawing.Point(11, 290);
             this.GradientExamplePictureBox.Name = "GradientExamplePictureBox";
-            this.GradientExamplePictureBox.Size = new System.Drawing.Size(266, 55);
+            this.GradientExamplePictureBox.Size = new System.Drawing.Size(351, 55);
             this.GradientExamplePictureBox.TabIndex = 7;
             this.GradientExamplePictureBox.TabStop = false;
             this.GradientExamplePictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.GradientExamplePictureBox_Paint);
             // 
             // AddColorButton
             // 
-            this.AddColorButton.Location = new System.Drawing.Point(157, 351);
+            this.AddColorButton.Location = new System.Drawing.Point(192, 348);
             this.AddColorButton.Name = "AddColorButton";
             this.AddColorButton.Size = new System.Drawing.Size(85, 23);
             this.AddColorButton.TabIndex = 8;
@@ -144,7 +145,7 @@
             // PickedColorPictureBox
             // 
             this.PickedColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PickedColorPictureBox.Location = new System.Drawing.Point(368, 351);
+            this.PickedColorPictureBox.Location = new System.Drawing.Point(11, 351);
             this.PickedColorPictureBox.Name = "PickedColorPictureBox";
             this.PickedColorPictureBox.Size = new System.Drawing.Size(55, 55);
             this.PickedColorPictureBox.TabIndex = 9;
@@ -153,7 +154,7 @@
             // 
             // ChangeColorButton
             // 
-            this.ChangeColorButton.Location = new System.Drawing.Point(157, 380);
+            this.ChangeColorButton.Location = new System.Drawing.Point(192, 377);
             this.ChangeColorButton.Name = "ChangeColorButton";
             this.ChangeColorButton.Size = new System.Drawing.Size(85, 23);
             this.ChangeColorButton.TabIndex = 10;
@@ -163,7 +164,7 @@
             // 
             // ColorPickedID
             // 
-            this.ColorPickedID.Location = new System.Drawing.Point(299, 351);
+            this.ColorPickedID.Location = new System.Drawing.Point(123, 351);
             this.ColorPickedID.Maximum = new decimal(new int[] {
             0,
             0,
@@ -177,7 +178,7 @@
             // LabelColorID
             // 
             this.LabelColorID.AutoSize = true;
-            this.LabelColorID.Location = new System.Drawing.Point(248, 353);
+            this.LabelColorID.Location = new System.Drawing.Point(72, 353);
             this.LabelColorID.Name = "LabelColorID";
             this.LabelColorID.Size = new System.Drawing.Size(45, 13);
             this.LabelColorID.TabIndex = 12;
@@ -186,7 +187,7 @@
             // LabelRGB
             // 
             this.LabelRGB.AutoSize = true;
-            this.LabelRGB.Location = new System.Drawing.Point(247, 380);
+            this.LabelRGB.Location = new System.Drawing.Point(71, 380);
             this.LabelRGB.Name = "LabelRGB";
             this.LabelRGB.Size = new System.Drawing.Size(30, 13);
             this.LabelRGB.TabIndex = 13;
@@ -195,7 +196,7 @@
             // LabelHEX
             // 
             this.LabelHEX.AutoSize = true;
-            this.LabelHEX.Location = new System.Drawing.Point(248, 406);
+            this.LabelHEX.Location = new System.Drawing.Point(72, 406);
             this.LabelHEX.Name = "LabelHEX";
             this.LabelHEX.Size = new System.Drawing.Size(29, 13);
             this.LabelHEX.TabIndex = 14;
@@ -203,7 +204,7 @@
             // 
             // ColorRGB
             // 
-            this.ColorRGB.Location = new System.Drawing.Point(284, 377);
+            this.ColorRGB.Location = new System.Drawing.Point(108, 377);
             this.ColorRGB.Name = "ColorRGB";
             this.ColorRGB.ReadOnly = true;
             this.ColorRGB.Size = new System.Drawing.Size(78, 20);
@@ -211,7 +212,7 @@
             // 
             // ColorHEX
             // 
-            this.ColorHEX.Location = new System.Drawing.Point(283, 403);
+            this.ColorHEX.Location = new System.Drawing.Point(107, 403);
             this.ColorHEX.Name = "ColorHEX";
             this.ColorHEX.ReadOnly = true;
             this.ColorHEX.Size = new System.Drawing.Size(78, 20);
@@ -219,7 +220,7 @@
             // 
             // ClearColorsButton
             // 
-            this.ClearColorsButton.Location = new System.Drawing.Point(159, 438);
+            this.ClearColorsButton.Location = new System.Drawing.Point(280, 377);
             this.ClearColorsButton.Name = "ClearColorsButton";
             this.ClearColorsButton.Size = new System.Drawing.Size(85, 23);
             this.ClearColorsButton.TabIndex = 17;
@@ -239,7 +240,7 @@
             // LabelOutputCountChars
             // 
             this.LabelOutputCountChars.AutoSize = true;
-            this.LabelOutputCountChars.Location = new System.Drawing.Point(220, 245);
+            this.LabelOutputCountChars.Location = new System.Drawing.Point(235, 245);
             this.LabelOutputCountChars.Name = "LabelOutputCountChars";
             this.LabelOutputCountChars.Size = new System.Drawing.Size(68, 13);
             this.LabelOutputCountChars.TabIndex = 19;
@@ -265,7 +266,7 @@
             // 
             // DeleteColorButton
             // 
-            this.DeleteColorButton.Location = new System.Drawing.Point(159, 409);
+            this.DeleteColorButton.Location = new System.Drawing.Point(280, 348);
             this.DeleteColorButton.Name = "DeleteColorButton";
             this.DeleteColorButton.Size = new System.Drawing.Size(85, 23);
             this.DeleteColorButton.TabIndex = 22;
@@ -276,16 +277,16 @@
             // LabelCountColor
             // 
             this.LabelCountColor.AutoSize = true;
-            this.LabelCountColor.Location = new System.Drawing.Point(248, 426);
+            this.LabelCountColor.Location = new System.Drawing.Point(8, 409);
             this.LabelCountColor.Name = "LabelCountColor";
-            this.LabelCountColor.Size = new System.Drawing.Size(65, 13);
+            this.LabelCountColor.Size = new System.Drawing.Size(38, 13);
             this.LabelCountColor.TabIndex = 23;
-            this.LabelCountColor.Text = "Count Color:";
+            this.LabelCountColor.Text = "Count:";
             // 
             // CountColors
             // 
             this.CountColors.AutoSize = true;
-            this.CountColors.Location = new System.Drawing.Point(319, 426);
+            this.CountColors.Location = new System.Drawing.Point(52, 409);
             this.CountColors.Name = "CountColors";
             this.CountColors.Size = new System.Drawing.Size(13, 13);
             this.CountColors.TabIndex = 25;
@@ -294,19 +295,30 @@
             // GradientTemplateComboBox
             // 
             this.GradientTemplateComboBox.FormattingEnabled = true;
-            this.GradientTemplateComboBox.Location = new System.Drawing.Point(341, 426);
+            this.GradientTemplateComboBox.Location = new System.Drawing.Point(280, 406);
             this.GradientTemplateComboBox.Name = "GradientTemplateComboBox";
-            this.GradientTemplateComboBox.Size = new System.Drawing.Size(82, 21);
+            this.GradientTemplateComboBox.Size = new System.Drawing.Size(85, 21);
             this.GradientTemplateComboBox.TabIndex = 26;
             this.GradientTemplateComboBox.Text = "Template";
             this.GradientTemplateComboBox.SelectedValueChanged += new System.EventHandler(this.GradientTemplateComboBox_SelectedValueChanged);
+            // 
+            // Reverse
+            // 
+            this.Reverse.Location = new System.Drawing.Point(192, 406);
+            this.Reverse.Name = "Reverse";
+            this.Reverse.Size = new System.Drawing.Size(85, 23);
+            this.Reverse.TabIndex = 27;
+            this.Reverse.Text = "Reverse";
+            this.Reverse.UseVisualStyleBackColor = true;
+            this.Reverse.Click += new System.EventHandler(this.Reverse_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(435, 470);
+            this.ClientSize = new System.Drawing.Size(468, 438);
+            this.Controls.Add(this.Reverse);
             this.Controls.Add(this.GradientTemplateComboBox);
             this.Controls.Add(this.CountColors);
             this.Controls.Add(this.LabelCountColor);
@@ -372,6 +384,7 @@
         private System.Windows.Forms.Label LabelCountColor;
         private System.Windows.Forms.Label CountColors;
         private System.Windows.Forms.ComboBox GradientTemplateComboBox;
+        private System.Windows.Forms.Button Reverse;
     }
 }
 

@@ -253,5 +253,11 @@ namespace GradientGenerator
             ColorPickedID.Maximum = Colors.Count - 1;
             SyncColor();
         }
+
+        private void Reverse_Click(object sender, EventArgs e)
+        {
+            Colors.Reverse();
+            SyncColor();
+        }
     }
 }
