@@ -53,11 +53,8 @@
             this.DeleteColorButton = new System.Windows.Forms.Button();
             this.LabelCountColor = new System.Windows.Forms.Label();
             this.CountColors = new System.Windows.Forms.Label();
-            this.GradientPaletteComboBox = new System.Windows.Forms.ComboBox();
+            this.GradientTemplateComboBox = new System.Windows.Forms.ComboBox();
             this.Reverse = new System.Windows.Forms.Button();
-            this.SavePalleteButton = new System.Windows.Forms.Button();
-            this.LoadPaletteButton = new System.Windows.Forms.Button();
-            this.PaletteNameTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.GradientExamplePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PickedColorPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ColorPickedID)).BeginInit();
@@ -297,14 +294,15 @@
             this.CountColors.TabIndex = 25;
             this.CountColors.Text = "0";
             // 
-            // GradientPaletteComboBox
+            // GradientTemplateComboBox
             // 
-            this.GradientPaletteComboBox.Location = new System.Drawing.Point(280, 406);
-            this.GradientPaletteComboBox.Name = "GradientPaletteComboBox";
-            this.GradientPaletteComboBox.Size = new System.Drawing.Size(85, 21);
-            this.GradientPaletteComboBox.TabIndex = 26;
-            this.GradientPaletteComboBox.Text = "Palette";
-            this.GradientPaletteComboBox.SelectedValueChanged += new System.EventHandler(this.GradientPaletteComboBox_SelectedValueChanged);
+            this.GradientTemplateComboBox.FormattingEnabled = true;
+            this.GradientTemplateComboBox.Location = new System.Drawing.Point(280, 406);
+            this.GradientTemplateComboBox.Name = "GradientTemplateComboBox";
+            this.GradientTemplateComboBox.Size = new System.Drawing.Size(85, 21);
+            this.GradientTemplateComboBox.TabIndex = 26;
+            this.GradientTemplateComboBox.Text = "Template";
+            this.GradientTemplateComboBox.SelectedValueChanged += new System.EventHandler(this.GradientTemplateComboBox_SelectedValueChanged);
             // 
             // Reverse
             // 
@@ -316,45 +314,14 @@
             this.Reverse.UseVisualStyleBackColor = true;
             this.Reverse.Click += new System.EventHandler(this.Reverse_Click);
             // 
-            // SavePalleteButton
-            // 
-            this.SavePalleteButton.Location = new System.Drawing.Point(368, 377);
-            this.SavePalleteButton.Name = "SavePalleteButton";
-            this.SavePalleteButton.Size = new System.Drawing.Size(90, 23);
-            this.SavePalleteButton.TabIndex = 28;
-            this.SavePalleteButton.Text = "Save Palette";
-            this.SavePalleteButton.UseVisualStyleBackColor = true;
-            this.SavePalleteButton.Click += new System.EventHandler(this.SavePalleteButton_Click);
-            // 
-            // LoadPaletteButton
-            // 
-            this.LoadPaletteButton.Location = new System.Drawing.Point(368, 406);
-            this.LoadPaletteButton.Name = "LoadPaletteButton";
-            this.LoadPaletteButton.Size = new System.Drawing.Size(90, 23);
-            this.LoadPaletteButton.TabIndex = 29;
-            this.LoadPaletteButton.Text = "Load Palette";
-            this.LoadPaletteButton.UseVisualStyleBackColor = true;
-            this.LoadPaletteButton.Click += new System.EventHandler(this.LoadPaletteButton_Click);
-            // 
-            // PaletteNameTextBox
-            // 
-            this.PaletteNameTextBox.Location = new System.Drawing.Point(368, 352);
-            this.PaletteNameTextBox.Name = "PaletteNameTextBox";
-            this.PaletteNameTextBox.Size = new System.Drawing.Size(88, 20);
-            this.PaletteNameTextBox.TabIndex = 30;
-            this.PaletteNameTextBox.Text = "PaletteName";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(468, 438);
-            this.Controls.Add(this.PaletteNameTextBox);
-            this.Controls.Add(this.LoadPaletteButton);
-            this.Controls.Add(this.SavePalleteButton);
             this.Controls.Add(this.Reverse);
-            this.Controls.Add(this.GradientPaletteComboBox);
+            this.Controls.Add(this.GradientTemplateComboBox);
             this.Controls.Add(this.CountColors);
             this.Controls.Add(this.LabelCountColor);
             this.Controls.Add(this.DeleteColorButton);
@@ -418,11 +385,8 @@
         private System.Windows.Forms.Button DeleteColorButton;
         private System.Windows.Forms.Label LabelCountColor;
         private System.Windows.Forms.Label CountColors;
-        private System.Windows.Forms.ComboBox GradientPaletteComboBox;
+        private System.Windows.Forms.ComboBox GradientTemplateComboBox;
         private System.Windows.Forms.Button Reverse;
-        private System.Windows.Forms.Button SavePalleteButton;
-        private System.Windows.Forms.Button LoadPaletteButton;
-        private System.Windows.Forms.TextBox PaletteNameTextBox;
     }
 }
 
