@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
+using GradientGenerator.Palettes;
 
 
 namespace GradientGenerator
@@ -12,18 +13,19 @@ namespace GradientGenerator
     {
 
         ColorDialog colorDialog = new ColorDialog();
-        List<Color> Colors = new List<Color> {  };
-        
+
+        List<Color> Colors = new List<Color> { };
+
         public MainForm()
         {
-            
+
             InitializeComponent();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            GradientTemplates.Initialize();
-            GradientTemplateComboBox.Items.AddRange(GradientTemplates.Templates.Keys.ToArray());
+            GradientPalettes.Initialize();
+            GradientPaletteComboBox.Items.AddRange(GradientPalettes.Palettes.Keys.ToArray());
             SyncColor();
         }
 
@@ -78,7 +80,7 @@ namespace GradientGenerator
         private void SyncColor()
         {
             CountColors.Text = Colors.Count.ToString();
-            if(Colors.Count == 0)
+            if (Colors.Count == 0)
             {
                 ColorRGB.Text = "-";
                 ColorHEX.Text = "-";
@@ -105,10 +107,10 @@ namespace GradientGenerator
                 return;
             }
             Colors.RemoveAt((int)ColorPickedID.Value);
-            if(ColorPickedID.Value == Colors.Count) ColorPickedID.Value--;
+            if (ColorPickedID.Value == Colors.Count) ColorPickedID.Value--;
             else SyncColor();
             ColorPickedID.Maximum--;
-            
+
         }
 
 
@@ -118,17 +120,17 @@ namespace GradientGenerator
         private void DrawGradient(Color[] colors, PaintEventArgs e)
         {
             int count = colors.Count();
-            if(count == 1)
+            if (count == 1)
             {
-                FillRectangle(colors[0],e);
+                FillRectangle(colors[0], e);
                 return;
             }
             ColorBlend cb = new ColorBlend(count);
-            LinearGradientBrush brush = new LinearGradientBrush(e.ClipRectangle, Color.Black, Color.Black, 0 , false);
+            LinearGradientBrush brush = new LinearGradientBrush(e.ClipRectangle, Color.Black, Color.Black, 0, false);
 
             float[] pos = new float[count];
-            for(int i = 0; i < count; i++)
-                pos[i] = (float)i/(count - 1);
+            for (int i = 0; i < count; i++)
+                pos[i] = (float)i / (count - 1);
 
             cb.Positions = pos;
             cb.Colors = colors;
@@ -238,7 +240,7 @@ namespace GradientGenerator
 
             for (int i = 0; i < text.Length; i++)
             {
-                if(String.IsNullOrWhiteSpace(text[i].ToString()))
+                if (String.IsNullOrWhiteSpace(text[i].ToString()))
                 {
                     result += text[i].ToString();
                     continue;
@@ -277,7 +279,7 @@ namespace GradientGenerator
             for (int i = 0; i < count; i++)
             {
 
-                pos = (float)i / (count-1);
+                pos = (float)i / (count - 1);
 
                 for (int j = 0; j < positions.Length - 1; j++)
                     if (pos >= positions[j] && pos < positions[j + 1])
@@ -311,26 +313,62 @@ namespace GradientGenerator
 
         private void GradientExamplePictureBox_Paint(object sender, PaintEventArgs e)
         {
-            if(Colors.Count > 0) DrawGradient(Colors.ToArray(), e);
+            if (Colors.Count > 0) DrawGradient(Colors.ToArray(), e);
         }
 
         private void PickedColorPictureBox_Paint(object sender, PaintEventArgs e)
         {
-            if(Colors.Count > 0) FillRectangle(Colors[(int)ColorPickedID.Value], e);
+            if (Colors.Count > 0) FillRectangle(Colors[(int)ColorPickedID.Value], e);
         }
 
-        private void GradientTemplateComboBox_SelectedValueChanged(object sender, EventArgs e)
-        {
-            ClearColorsButton_Click(sender, e);
-            Colors.AddRange(GradientTemplates.Templates[GradientTemplateComboBox.SelectedItem.ToString()]);
-            ColorPickedID.Maximum = Colors.Count - 1;
-            SyncColor();
-        }
+
 
         private void Reverse_Click(object sender, EventArgs e)
         {
             Colors.Reverse();
             SyncColor();
         }
+
+        private void SavePalleteButton_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "*.json|*.json";
+            saveFileDialog.ShowDialog();
+            string path = saveFileDialog.FileName;
+            if (String.IsNullOrEmpty(path) || Colors.Count == 0) return;
+            PaletteManager.Save(path, new Palette(PaletteNameTextBox.Text, Colors.ToArray()));
+        }
+
+        private void LoadPaletteButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "*.json|*.json";
+            openFileDialog.ShowDialog();
+            string path = openFileDialog.FileName;
+            if (String.IsNullOrEmpty(path)) return;
+
+            Palette[] loadPalettes = PaletteManager.Load(path);
+            var paletts = GradientPalettes.Palettes;
+            for (int i = 0; i < loadPalettes.Length; i++)
+            {
+                string name = loadPalettes[i].Name;
+                Color[] colors = loadPalettes[i].GetColors();
+                if (paletts.ContainsKey(name))
+                    paletts[name] = colors;
+                else paletts.Add(name, colors);
+            }
+            GradientPaletteComboBox.Items.Clear();
+            GradientPaletteComboBox.Items.AddRange(paletts.Keys.ToArray());
+        }
+
+        private void GradientPaletteComboBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            ClearColorsButton_Click(sender, e);
+            Colors.AddRange(GradientPalettes.Palettes[GradientPaletteComboBox.SelectedItem.ToString()]);
+            ColorPickedID.Maximum = Colors.Count - 1;
+            PaletteNameTextBox.Text = GradientPaletteComboBox.SelectedItem.ToString();
+            SyncColor();
+        }
+
     }
 }
